@@ -144,6 +144,9 @@ main{max-width:1040px;margin:28px auto 64px;padding:clamp(22px,4vw,44px);
 .compass{display:grid;grid-template-columns:auto 1fr;gap:4px 22px;background:rgba(98,214,200,.08);border:1px solid rgba(98,214,200,.4);border-radius:22px;padding:20px 24px;margin:0 0 20px}
 .compass[hidden]{display:none}
 .compass svg{grid-row:span 3}
+.compass .dig-ico{color:var(--teal);filter:drop-shadow(0 0 10px rgba(98,214,200,.35))}
+.switch-btn .dig-ico{flex:none;color:var(--teal)}
+[data-theme=paper] .switch-btn .dig-ico{color:var(--ink)}
 .compass p{color:var(--muted);margin:4px 0 6px;max-width:70ch}
 .compass ul{margin:4px 0 0;padding-left:1.2em;max-width:70ch}
 .compass li+li{margin-top:6px}
@@ -589,7 +592,7 @@ dialog.side::backdrop{background:rgba(8,10,34,.25);backdrop-filter:none}
 [data-theme=paper] .pick:hover{background:rgba(30,39,86,.05)}
 [data-theme=paper] .close-read{background:var(--card);border:2.5px solid var(--ink);box-shadow:var(--cut)}
 [data-theme=paper] .close-read blockquote{color:var(--ink);font-weight:700;font-variation-settings:normal}
-[data-theme=paper] .compass svg path:first-of-type{fill:var(--primary)}
+[data-theme=paper] .compass .dig-ico{color:var(--primary)}
 [data-theme=paper] .scene.plan{background:#e9d6b0}
 [data-theme=paper] .person-row{background:var(--card);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
 [data-theme=paper] .person-row:hover{background:#fff1d6}
@@ -977,7 +980,6 @@ function terrainArt(k, x, y, w, h){
   return L.join('');
 }
 const moonMark = (s = 28) => `<svg width="${s}" height="${s}" viewBox="0 0 32 32" aria-hidden="true"><circle cx="20" cy="11" r="7" fill="#ffe9a8"/><path d="M2 25c6-6 10 2 15-2s9-4 13-1" fill="none" stroke="#62d6c8" stroke-width="3" stroke-linecap="round"/></svg>`;
-const roseIcon = `<svg width="64" height="64" viewBox="-32 -32 64 64" aria-hidden="true"><circle r="28" fill="none" stroke="#62d6c8" stroke-opacity=".5"/><circle r="22" fill="none" stroke="#62d6c8" stroke-opacity=".25"/><path d="M0-26L4-4L26 0L4 4L0 26L-4 4L-26 0L-4-4Z" fill="#62d6c8" fill-opacity=".85"/><path d="M0-26L4-4L0 0Z M26 0L4 4L0 0Z M0 26L-4 4L0 0Z M-26 0L-4-4L0 0Z" fill="#141a45" fill-opacity=".45"/></svg>`;
 
 // ---------- backdrop sky (deterministic, drawn once) ----------
 function drawSky(){
@@ -1302,7 +1304,7 @@ function home(){
     <ul class="about-list">
       <li>${moonMark(22)}<p>Nothing here is graded or measured. There are no right answers, only your own stories and the questions they open.</p></li>
       <li>${moonMark(22)}<p>It is private. What you make is yours, and nothing is shared unless you choose to share it. Anything you share can be taken back at any time.</p></li>
-      <li>${moonMark(22)}<p>The decolonial compass is optional. In each station it offers questions about language, power and place, for when you want to look deeper.</p></li>
+      <li>${moonMark(22)}<p>“Dig deeper” is optional. In each station it offers questions about language, power and place through a decolonial lens, for when you want to go further.</p></li>
     </ul>
     <p class="about-credit">Created by Sebastián Nizo and David Mejía - <span lang="es">Maestría en Lingüística Aplicada a la Enseñanza del Inglés - Universidad Distrital</span></p>
   </section>`;
@@ -1328,14 +1330,21 @@ function s1(){
   </section>
   <div class="foot"><a class="back" href="#home">‹ All stations</a><a class="btn" href="#land">See it in my landscape</a></div>`;
 }
+// "Dig deeper": the optional questions through a decolonial lens (internally still called the compass)
+const digIcon = (s = 20) => `<svg class="dig-ico" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M2.5 20.5h19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M3.4 20.5c1.6-3.8 5.8-3.8 7.4 0Z" fill="currentColor" opacity=".55"/>
+  <path d="M5.3 6.5l3-3M6.8 5l6.8 6.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M12.2 13.2L15 10.4l3.2 3.2c.9.9.9 2.5 0 3.3-.8.9-2.4.9-3.3 0Z" fill="currentColor"/>
+  <circle cx="19.8" cy="8.6" r="1.05" fill="currentColor"/><circle cx="21.4" cy="11.4" r=".8" fill="currentColor"/></svg>`;
 function compassSwitch(){
   return `<button class="switch-btn" role="switch" aria-checked="${compass}" data-act="compass" aria-controls="compassBox">
-      <span class="track" aria-hidden="true"></span>Decolonial compass <span class="state">${compass ? 'On' : 'Off'}</span></button>`;
+      <span class="track" aria-hidden="true"></span>${digIcon(20)}Dig deeper <span class="state">${compass ? 'On' : 'Off'}</span></button>`;
 }
 function compassBox(k){
-  return `<div class="compass" id="compassBox" ${compass ? '' : 'hidden'}>${roseIcon}
-    <h2>Decolonial compass</h2>
-    <p>Optional questions, if you want to look deeper. Take what is useful and leave the rest. There are no right answers.</p>
+  return `<div class="compass" id="compassBox" ${compass ? '' : 'hidden'}>${digIcon(64)}
+    <h2>Dig deeper</h2>
+    <p>Optional questions through a decolonial lens, if you want to look deeper. Take what is useful and leave the rest. There are no right answers.</p>
     <ul>${COMPASS[k].map(q => `<li>${q}</li>`).join('')}</ul>
   </div>`;
 }
