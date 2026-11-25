@@ -287,6 +287,50 @@ h3.ph{font-size:1rem;margin-top:18px;color:var(--muted)}
 .letter-aside li+li{margin-top:4px}
 .reread{margin-top:12px;color:var(--muted);white-space:pre-wrap}
 @media (max-width:820px){ .letter-grid{grid-template-columns:1fr} }
+/* ---- welcome page: objective + theoretical coordinates ---- */
+.landing-top{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(16px,3vw,32px)}
+.landing-top .brand{color:var(--text)}
+main.landing-main{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,40px) 56px;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0}
+.hero{min-height:calc(100vh - 150px);display:flex;flex-direction:column;justify-content:center;padding:40px 0 64px;max-width:860px}
+.hero .mark{display:block;margin-bottom:22px}
+.hero h1{font-size:clamp(2.9rem,1.5rem + 5.6vw,5.6rem);line-height:.98;letter-spacing:-.025em;font-variation-settings:"opsz" 144}
+.hero-lede{margin-top:28px;max-width:58ch;font-size:clamp(1.14rem,1rem + .55vw,1.4rem);line-height:1.62;color:var(--text)}
+.hero-acts{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-top:34px}
+.coords{padding:72px 0 40px;border-top:1px solid var(--line)}
+.coords h2,.cta h2{font-size:clamp(2rem,1.3rem + 2.6vw,3.1rem);font-variation-settings:"opsz" 96}
+.coords h2:focus{outline:none}
+.compass-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,64px);align-items:center;margin-top:40px}
+.rose{position:relative;width:min(100%,480px);aspect-ratio:1;margin:0 auto}
+.rose svg{position:absolute;inset:46px;width:calc(100% - 92px);height:calc(100% - 92px);overflow:visible}
+.rose-ring{transform-box:view-box;transform-origin:0 0;animation:roseTurn 180s linear infinite}
+.needle{transform-box:view-box;transform-origin:0 0;transition:transform 1.4s cubic-bezier(.3,1.45,.55,1)}
+.needle-sway{transform-box:view-box;transform-origin:0 0;animation:needleSway 6s ease-in-out infinite alternate}
+@keyframes roseTurn{to{transform:rotate(360deg)}}
+@keyframes needleSway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.coord-btn{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:92px;max-width:138px;padding:7px 12px 8px;border-radius:16px;border:1px solid var(--line-strong);background:rgba(14,18,54,.88);color:var(--text);font:inherit;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s}
+.coord-btn b{font:600 1.35rem/1 var(--display);color:#fff}
+.coord-btn span{font-size:.8rem;line-height:1.25;text-align:center;color:var(--muted)}
+.coord-btn:hover,.coord-btn[aria-pressed=true]{border-color:var(--amber);box-shadow:0 0 22px rgba(255,207,112,.35)}
+.coord-btn[aria-pressed=true]{background:rgba(42,38,90,.95)}
+.coord-btn[aria-pressed=true] b{color:var(--amber)}
+.coord-btn[data-dir=N]{top:0;left:50%;transform:translateX(-50%)}
+.coord-btn[data-dir=S]{bottom:0;left:50%;transform:translateX(-50%)}
+.coord-btn[data-dir=E]{right:0;top:50%;transform:translateY(-50%)}
+.coord-btn[data-dir=W]{left:0;top:50%;transform:translateY(-50%)}
+.coord-card{position:relative;padding:clamp(24px,3vw,36px);border-radius:26px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(3,5,25,.4);min-height:300px}
+.coord-card.fresh{animation:rise .5s var(--ease)}
+.coord-dir{color:var(--amber);font-weight:700;letter-spacing:.01em}
+.coord-card h3{margin-top:8px;font-size:clamp(1.3rem,1.1rem + .7vw,1.65rem);line-height:1.25}
+.coord-quote{margin:22px 0 0;padding-left:20px;border-left:3px solid var(--teal)}
+.coord-quote p{font:400 clamp(1.15rem,1rem + .5vw,1.35rem)/1.55 var(--display);font-variation-settings:"opsz" 24;color:var(--text)}
+.coord-quote footer{margin-top:14px;color:var(--muted);font-size:.98rem}
+.coord-quote cite{font-style:italic}
+.cta{margin-top:56px;padding:56px clamp(20px,4vw,48px);border-radius:30px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(3,5,25,.4)}
+.cta .lede{max-width:52ch}
+.landing-credit{margin-top:28px;text-align:center}
+@media (max-width:860px){ .compass-wrap{grid-template-columns:1fr} .coord-card{min-height:0} }
+@media (max-width:480px){ .rose svg{inset:40px;width:calc(100% - 80px);height:calc(100% - 80px)} .coord-btn{min-width:74px;max-width:96px;padding:5px 8px 6px} .coord-btn span{font-size:.72rem} .hero{min-height:auto;padding-top:24px} }
+
 /* ---- patchwork quilt ---- */
 .navq{display:inline-flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;font-weight:600;padding:6px 10px;border-radius:999px}
 .navq:hover,.navq[aria-current=page]{color:#fff;background:rgba(239,234,255,.1)}
@@ -580,6 +624,22 @@ dialog.side::backdrop{background:rgba(8,10,34,.25);backdrop-filter:none}
 [data-theme=paper] .clist li:focus{outline-color:var(--primary)}
 [data-theme=paper] .letter-read{background:#fffdf8;border:2.5px solid var(--ink);color:var(--ink)}
 [data-theme=paper] #toast{background:var(--card);color:var(--ink);border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+[data-theme=paper] .landing-top{background:var(--ink)}
+[data-theme=paper] .landing-top .brand{color:#fff}
+[data-theme=paper] .landing-top .btn.ghost{background:var(--accent);border-color:#fff;box-shadow:2px 2px 0 #fff}
+[data-theme=paper] .landing-top .theme-sw{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+[data-theme=paper] .landing-top .theme-sw button{color:#e3e1f4}
+[data-theme=paper] .landing-top .theme-sw button[aria-pressed=true]{color:var(--ink)}
+[data-theme=paper] .hero h1{font-size:clamp(2.8rem,1.4rem + 5.4vw,5.2rem)}
+[data-theme=paper] .coords{border-top:2px dashed var(--line)}
+[data-theme=paper] .coord-btn{background:var(--card);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+[data-theme=paper] .coord-btn b{color:var(--ink)}
+[data-theme=paper] .coord-btn:hover,[data-theme=paper] .coord-btn[aria-pressed=true]{border-color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+[data-theme=paper] .coord-btn[aria-pressed=true]{background:var(--accent)}
+[data-theme=paper] .coord-btn[aria-pressed=true] b,[data-theme=paper] .coord-btn[aria-pressed=true] span{color:var(--ink)}
+[data-theme=paper] .coord-card,[data-theme=paper] .cta{background:var(--grain),var(--card);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);backdrop-filter:none;-webkit-backdrop-filter:none}
+[data-theme=paper] .coord-dir{color:#a8541f}
+[data-theme=paper] .coord-quote{border-left:5px solid var(--primary)}
 </style></head><body>
 <svg class="sky" aria-hidden="true" id="sky"></svg>
 <div id="app"></div>
@@ -763,7 +823,7 @@ const DEEP2 = [
   'Which people, readings or courses have influenced it?',
   'Has it changed along my journey?',
   'Are there moments when I think or act differently from what it says?'];
-const VIEWS = ['home', 's1', 's2', 's3', 's4', 's5', 's6', 'land', 'quilt', 'share'];
+const VIEWS = ['home', 's1', 's2', 's3', 's4', 's5', 's6', 'land', 'quilt', 'share', 'welcome', 'start'];
 
 // ---- looks: 'twilight' (default) or 'paper'. Remembered on this device only. ----
 let theme = document.documentElement.dataset.theme === 'paper' ? 'paper' : 'twilight';
@@ -775,7 +835,7 @@ const NOISE = `data:image/svg+xml,${encodeURIComponent("<svg xmlns='http://www.w
 
 let user = null, A = blank(), loadOK = true, loadErr = '';
 let PATCH_ID = '';
-function routeFromHash(){ const h = location.hash.slice(1); if (h.startsWith('patch-')) { PATCH_ID = decodeURIComponent(h.slice(6)); return 'patch'; } return VIEWS.includes(h) ? h : 'home'; }
+function routeFromHash(){ const h = location.hash.slice(1); if (!h) return 'welcome'; if (h.startsWith('patch-')) { PATCH_ID = decodeURIComponent(h.slice(6)); return 'patch'; } return VIEWS.includes(h) ? h : 'home'; }
 let view = routeFromHash();
 let compass = false, mode = 'in', msg = '', keepEmail = '', busy = false;
 let saveT = null, pending = false, saveState = ['', ''];
@@ -1016,6 +1076,7 @@ async function signOut(){
   localStorage.removeItem('pta_session');
   user = null; A = blank(); compass = false; saveState = ['', '']; mode = 'in'; msg = ''; QC = {list:null, patch:null, comments:[], mine:undefined, err:'', loading:''};
   if (dlg.open) closeDlg();
+  history.replaceState(null, '', '#welcome'); view = 'welcome';
   render(true);
 }
 addEventListener('pagehide', () => flush());
@@ -1197,6 +1258,7 @@ function setTheme(t){
 function authHTML(){
   const up = mode === 'up';
   return `<div class="auth-top">${themeSwitch()}</div><div class="auth-wrap"><main class="auth">
+  <a class="back" href="#welcome" style="margin-bottom:14px">‹ About the project</a>
   <span class="mark">${moonMark(40)}</span>
   <h1 tabindex="-1">Personal Teaching Atlas</h1>
   <p class="lede">A private place to explore who you are as an educator. Nothing here is graded or measured, and nothing is shared unless you choose to share it.</p>
@@ -2369,13 +2431,103 @@ function land(){
     <div class="land-acts"><a class="btn pri" href="#share">Share to the patchwork quilt</a><a class="btn ghost" href="#quilt">See the quilt</a></div></div>
   <div class="scene land">${riverSVG('land')}</div>`;
 }
+// ---------- welcome page: the objective and the theoretical coordinates ----------
+const atlasIcon = `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M1.5 4l5-2 5 2 5-2v12l-5 2-5-2-5 2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 2v12M11.5 4v12" stroke="currentColor" stroke-width="1.5"/></svg>`;
+// Coordinates 1 and 2 sit on north and south, 3 and 4 on east and west, as the authors listed them.
+const COORDS = [
+  {dir:'N', name:'North', deg:0,   n:1, short:'Identity in motion', title:'Teacher identity as a situated and unfinished process',
+   quote:'Identity is a moving intersection of the inner and outer forces that make me who I am.', author:'Parker J. Palmer', ref:'1998, p. 13', book:'The Courage to Teach: Exploring the Inner Landscape of a Teacher’s Life'},
+  {dir:'S', name:'South', deg:180, n:2, short:'Critical reflexivity', title:'Critical reflexivity and the problematization of the normalized',
+   quote:'Those who authentically commit themselves to the people must re-examine themselves constantly.', author:'Paulo Freire', ref:'2000, p. 44', book:'Pedagogy of the Oppressed'},
+  {dir:'E', name:'East',  deg:90,  n:3, short:'Narrative and experience', title:'Narrative, experience and the knowledges of the self',
+   quote:'Narrative is the study of how humans make meaning of experience by endlessly telling and retelling stories about themselves that both refigure the past and create purpose in the future.', author:'Connelly & Clandinin', ref:'1988, p. 24', book:'Teachers as Curriculum Planners: Narratives of Experience'},
+  {dir:'W', name:'West',  deg:270, n:4, short:'Possibility and becoming', title:'Possibility and pedagogical becomings',
+   quote:'We are beings in the process of becoming—as unfinished, uncompleted beings in and with a likewise unfinished reality.', author:'Paulo Freire', ref:'2000, p. 84', book:'Pedagogy of the Oppressed'}];
+let COORD = 0, NEEDLE = 0;
+function roseSVG(){
+  const P = isPaper(), line = P ? INK : '#9db4ff', lo = P ? .85 : .5;
+  let ticks = '';
+  for (let i = 0; i < 72; i++){ const a = i * 5 * Math.PI / 180, long = i % 6 === 0, r1 = 190, r2 = long ? 172 : 181;
+    ticks += `<path d="M${(Math.sin(a)*r1).toFixed(1)} ${(-Math.cos(a)*r1).toFixed(1)}L${(Math.sin(a)*r2).toFixed(1)} ${(-Math.cos(a)*r2).toFixed(1)}" stroke="${line}" stroke-opacity="${long ? lo : lo*.6}" stroke-width="${long ? 2 : 1.2}"/>`; }
+  for (let i = 0; i < 8; i++){ const a = (i * 45 + 22.5) * Math.PI / 180; ticks += `<circle cx="${(Math.sin(a)*160).toFixed(1)}" cy="${(-Math.cos(a)*160).toFixed(1)}" r="2.6" fill="${line}" fill-opacity="${lo}"/>`; }
+  // eight-point rose: long points on the four coordinates, short ones between them; each point has a light and a dark half
+  const xy = (deg, r) => `${(Math.sin(deg * Math.PI / 180) * r).toFixed(1)} ${(-Math.cos(deg * Math.PI / 180) * r).toFixed(1)}`;
+  const st = P ? `stroke="${INK}" stroke-width="1.6" stroke-linejoin="round"` : '';
+  const point = (d, r, w, light, dark) => `<path d="M0 0L${xy(d, r)}L${xy(d + 45, w)}Z" fill="${light}" ${st}/><path d="M0 0L${xy(d, r)}L${xy(d - 45, w)}Z" fill="${dark}" ${st}/>`;
+  const [mL, mD, dL, dD] = P ? ['#f2a93b', '#d9714a', '#8fb3e8', '#2f5bd3'] : ['#8ff0e3', '#2b8f86', '#a58fd0', '#4b3a8c'];
+  let rose = '';
+  for (const d of [45, 135, 225, 315]) rose += point(d, 96, 20, dL, dD);
+  for (const d of [0, 90, 180, 270]) rose += point(d, 150, 26, mL, mD);
+  const needle = P ? ['#b3261e', '#fffaf0'] : ['#ffcf70', '#efeaff'];
+  return `<svg viewBox="-205 -205 410 410" aria-hidden="true" focusable="false">
+    <defs><filter id="roseGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <circle r="198" fill="${P ? '#fffaf0' : 'rgba(14,18,54,.72)'}" stroke="${line}" stroke-opacity="${lo}" stroke-width="${P ? 2.5 : 1.5}"/>
+    <g class="rose-ring">${ticks}</g>
+    <circle r="132" fill="none" stroke="${line}" stroke-opacity="${lo*.6}" stroke-dasharray="3 6"/>
+    <circle r="62" fill="none" stroke="${line}" stroke-opacity="${lo*.5}"/>
+    <g ${P ? '' : 'filter="url(#roseGlow)" opacity=".95"'}>${rose}</g>
+    <g class="needle" id="needle" style="transform:rotate(${NEEDLE}deg)"><g class="needle-sway">
+      <path d="M0-168L11 0L-11 0Z" fill="${needle[0]}" ${P ? `stroke="${INK}" stroke-width="2"` : 'filter="url(#roseGlow)"'}/>
+      <path d="M0 168L11 0L-11 0Z" fill="${needle[1]}" fill-opacity="${P ? 1 : .8}" ${P ? `stroke="${INK}" stroke-width="2"` : ''}/>
+      <circle r="10" fill="${P ? '#f2a93b' : '#ffcf70'}" ${P ? `stroke="${INK}" stroke-width="2"` : ''}/></g></g></svg>`;
+}
+function coordCard(i){
+  const c = COORDS[i];
+  return `<p class="coord-dir">${c.name}, coordinate ${c.n}</p>
+    <h3>${c.title}</h3>
+    <blockquote class="coord-quote"><p>“${c.quote}”</p>
+      <footer>${c.author} (${c.ref})<br><cite>${c.book}</cite></footer></blockquote>`;
+}
+function selectCoord(i, focusBtn){
+  if (i === COORD && $('#coordCard')?.dataset.i === String(i)) return;
+  COORD = i;
+  const target = COORDS[i].deg, cur = ((NEEDLE % 360) + 360) % 360;
+  NEEDLE += ((target - cur + 540) % 360) - 180; // turn the short way round
+  $('#needle')?.style.setProperty('transform', `rotate(${NEEDLE}deg)`);
+  document.querySelectorAll('.coord-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.i === String(i)));
+  const card = $('#coordCard'); if (card) { card.dataset.i = i; card.innerHTML = coordCard(i); card.classList.remove('fresh'); void card.offsetWidth; card.classList.add('fresh'); }
+  if (focusBtn) $(`.coord-btn[data-i="${i}"]`)?.focus();
+}
+function welcomePage(){
+  const go = user ? 'Continue my atlas' : 'Start your atlas';
+  return `<section class="hero" aria-labelledby="heroH">
+    <span class="mark">${moonMark(46)}</span>
+    <h1 id="heroH" tabindex="-1">Personal Teaching Atlas</h1>
+    <p class="hero-lede">This space invites English teachers to explore their own practice. Over six stations, you will revisit the stories that shaped you, the beliefs you hold, the moments inside your classroom, the people who matter in your teaching, and the paths you might take next. Everything you create becomes part of one landscape that is yours. Nothing here is scored or compared, and you decide what stays private and what you share.</p>
+    <div class="hero-acts"><button type="button" class="btn pri" data-act="startAtlas">${go}</button><button type="button" class="btn ghost" data-act="toCoords">Read the theoretical coordinates</button></div>
+  </section>
+
+  <section class="coords" id="coords" aria-labelledby="coordsH">
+    <h2 id="coordsH" tabindex="-1">Theoretical coordinates</h2>
+    <p class="lede">Four ideas orient this atlas, like the points of a compass. Choose a direction to read where it comes from.</p>
+    <div class="compass-wrap">
+      <div class="rose" role="group" aria-label="The compass of coordinates">
+        ${roseSVG()}
+        ${COORDS.map((c, i) => `<button type="button" class="coord-btn" data-act="coord" data-i="${i}" data-dir="${c.dir}" aria-pressed="${i === COORD}" aria-controls="coordCard"><b>${c.dir}</b><span>${c.short}</span><span class="vh">: ${c.title}</span></button>`).join('')}
+      </div>
+      <div class="coord-card" id="coordCard" data-i="${COORD}" aria-live="polite">${coordCard(COORD)}</div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="ctaH">
+    <h2 id="ctaH">${user ? 'Your atlas is waiting for you' : 'Your atlas begins with a story'}</h2>
+    <p class="lede">${user ? 'Pick up where you left off, at your own pace.' : 'Start with the first station whenever you are ready. You can stop at any moment and come back later.'}</p>
+    <div class="hero-acts"><button type="button" class="btn pri" data-act="startAtlas">${go}</button>${user ? '' : '<button type="button" class="link" data-act="signInNow">I already have an account</button>'}</div>
+  </section>
+  <p class="about-credit landing-credit">Created by Sebastián Nizo and David Mejía - <span lang="es">Maestría en Lingüística Aplicada a la Enseñanza del Inglés - Universidad Distrital</span></p>`;
+}
+
 function render(focus){
   const app = $('#app');
-  if (!user) { app.innerHTML = authHTML(); if (focus) $('h1')?.focus(); return; }
-  const body = {s1, s2, s3, s4, s5, s6, land, quilt:quiltPage, share:sharePage, patch:patchPage}[view]?.() ?? home();
-  app.innerHTML = `<header class="bar"><a class="brand" href="#home">${moonMark()}<span>Personal Teaching Atlas</span></a>
-    <div class="bar-r"><span id="saved" class="saved ${saveState[0]}" role="status" aria-live="polite">${esc(saveState[1])}</span><a class="navq" href="#quilt" ${['quilt', 'patch', 'share'].includes(view) ? 'aria-current="page"' : ''}>${quiltIcon}<span class="lbl">Quilt</span></a>${themeSwitch()}<span class="who">${esc(user.name)}</span><button class="btn ghost sm" data-act="out">Sign out</button></div></header>
-  <main class="${['land', 'patch', 'share', 'quilt'].includes(view) ? 'wide' : ''}">${loadOK ? '' : `<p class="banner" role="alert"><b>Your atlas could not be loaded.</b> ${esc(loadErr)} Saving is paused so nothing you made is overwritten. Reload the page to try again.</p>`}${body}</main>`;
+  if (!user) {
+    app.innerHTML = view === 'welcome' ? `<div class="landing-top"><a class="brand" href="#welcome">${moonMark()}<span>Personal Teaching Atlas</span></a><div class="bar-r">${themeSwitch()}<button type="button" class="btn ghost sm" data-act="signInNow">Sign in</button></div></div><main class="landing-main">${welcomePage()}</main>` : authHTML();
+    if (focus) { scrollTo(0, 0); $('h1')?.focus({preventScroll:true}); }
+    return;
+  }
+  const body = {s1, s2, s3, s4, s5, s6, land, quilt:quiltPage, share:sharePage, patch:patchPage, welcome:welcomePage}[view]?.() ?? home();
+  app.innerHTML = `<header class="bar"><a class="brand" href="#welcome">${moonMark()}<span>Personal Teaching Atlas</span></a>
+    <div class="bar-r"><span id="saved" class="saved ${saveState[0]}" role="status" aria-live="polite">${esc(saveState[1])}</span><a class="navq" href="#home" ${['home', 's1', 's2', 's3', 's4', 's5', 's6', 'land'].includes(view) ? 'aria-current="page"' : ''}>${atlasIcon}<span class="lbl">My atlas</span></a><a class="navq" href="#quilt" ${['quilt', 'patch', 'share'].includes(view) ? 'aria-current="page"' : ''}>${quiltIcon}<span class="lbl">Quilt</span></a>${themeSwitch()}<span class="who">${esc(user.name)}</span><button class="btn ghost sm" data-act="out">Sign out</button></div></header>
+  <main class="${view === 'welcome' ? 'landing-main' : ['land', 'patch', 'share', 'quilt'].includes(view) ? 'wide' : ''}">${loadOK ? '' : `<p class="banner" role="alert"><b>Your atlas could not be loaded.</b> ${esc(loadErr)} Saving is paused so nothing you made is overwritten. Reload the page to try again.</p>`}${body}</main>`;
   zoomed = false;
   if (focus) { scrollTo(0, 0); $('main h1')?.focus({preventScroll:true}); }
   if (['quilt', 'patch', 'share'].includes(view)) ensureQuilt();
@@ -2567,6 +2719,10 @@ document.addEventListener('click', e => {
   if (a === 'mode') { keepEmail = $('#em')?.value || ''; mode = mode === 'up' ? 'in' : 'up'; msg = ''; render(); $('#authForm h2')?.setAttribute('tabindex', '-1'); $('#authForm h2')?.focus(); }
   else if (a === 'out') signOut();
   else if (a === 'theme') setTheme(t.dataset.t);
+  else if (a === 'startAtlas') { if (user) location.hash = 'home'; else { mode = 'up'; msg = ''; location.hash = 'start'; } }
+  else if (a === 'signInNow') { mode = 'in'; msg = ''; if (location.hash === '#start') render(true); else location.hash = 'start'; }
+  else if (a === 'toCoords') { $('#coords')?.scrollIntoView({behavior: reduced() ? 'auto' : 'smooth', block:'start'}); $('#coordsH')?.focus({preventScroll:true}); }
+  else if (a === 'coord') selectCoord(+t.dataset.i);
   else if (a === 'addFig') addFig(t.dataset.k);
   else if (a === 'addStar') addStar(t.dataset.k);
   else if (a === 'wpMove') {
@@ -2693,6 +2849,13 @@ document.addEventListener('click', e => {
   else if (a === 'delNo') { $('#mActs').innerHTML = actsHTML(true); $('[data-act="del"]').focus(); }
   else if (a === 'delYes') { const id = draft.id; A.river = A.river.filter(x => x.id !== id); afterClose = () => ($('[data-act="add"]') || $('main h1'))?.focus(); save(); render(); closeDlg(); }
 });
+// the compass: hovering a direction shows its coordinate; on the keyboard the arrow keys point the way (up = north…)
+document.addEventListener('pointerover', e => { const b = e.target.closest?.('.coord-btn'); if (b && e.pointerType === 'mouse') selectCoord(+b.dataset.i); });
+document.addEventListener('keydown', e => {
+  if (!e.target.matches?.('.coord-btn')) return;
+  const dir = {ArrowUp:'N', ArrowDown:'S', ArrowRight:'E', ArrowLeft:'W'}[e.key]; if (!dir) return;
+  e.preventDefault(); selectCoord(COORDS.findIndex(c => c.dir === dir), true);
+});
 document.addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('.nd')) { e.preventDefault(); e.target.dispatchEvent(new MouseEvent('click', {bubbles:true})); }
   // move a figure in the classroom with the arrow keys (Shift for bigger steps)
@@ -2786,7 +2949,7 @@ document.addEventListener('submit', async e => {
   const f = e.target; if (!f.reportValidity()) return;
   const name = $('#nm')?.value.trim(), email = $('#em').value.trim().toLowerCase(), pw = $('#pw').value;
   busy = true; f.querySelector('[type=submit]').disabled = true; f.querySelector('[type=submit]').textContent = 'One moment…';
-  try { await authenticate(mode, name, email, pw); await loadAtlas(); msg = ''; keepEmail = ''; busy = false; render(true); }
+  try { await authenticate(mode, name, email, pw); await loadAtlas(); msg = ''; keepEmail = ''; busy = false; if (view === 'start' || view === 'welcome') { history.replaceState(null, '', '#home'); view = 'home'; } render(true); }
   catch (err) { busy = false; msg = friendly(err); keepEmail = email; render(); $('#pw').focus(); }
 });
 
